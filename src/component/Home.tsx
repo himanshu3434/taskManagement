@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Itask, Iuser } from "../types/types";
+import { Itask } from "../types/types";
 
 import { getTasks } from "../api/taskApi";
 import Task from "./Task";

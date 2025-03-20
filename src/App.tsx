@@ -20,7 +20,6 @@ import Home from "./component/Home";
 
 function App() {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
 
   const userStatus = useSelector((state: RootState) => state.auth.status) as
     | boolean
@@ -28,17 +27,15 @@ function App() {
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    getCurrentUser()
-      .then((user) => {
-        if (user.data.success) {
-          const userData = user.data.data.user;
+    getCurrentUser().then((user) => {
+      if (user.data.success) {
+        const userData = user.data.data.user;
 
-          dispatch(login({ userData }));
-        } else {
-          dispatch(logout());
-        }
-      })
-      .finally(() => setLoading(false));
+        dispatch(login({ userData }));
+      } else {
+        dispatch(logout());
+      }
+    });
   }, []);
   return (
     <div className="">
